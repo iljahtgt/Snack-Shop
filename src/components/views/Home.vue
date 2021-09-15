@@ -137,7 +137,14 @@
                 {{ item.content }}
               </div>
               <span class="flex row justify-content-around w-100 mx-auto mt-2">
-                <button class="btn btn-outline-primary w-25">查看</button>
+                <button class="btn btn-outline-primary w-25"
+                @click.prevent="getSingle(item.id)">
+                  <i
+                        class="fas fa-spinner fa-spin"
+                        v-if="status.loadingItem === item.id"
+                    ></i>
+                查看
+                </button>
                 <button
                   class="btn btn-outline-danger"
                   @click="addtoCart(item.id)"
@@ -154,6 +161,85 @@
         <Pagination :pagination="pagination" @pageTrigger="getPages" />
       </div>
     </div>
+     <!-- ProductModal -->
+<div
+          class="modal fade"
+          id="seeProductModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+           v-for="(item) in filterData" :key="item.id"
+        >
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content border-0">
+              <div class="modal-header bg-dark text-white text-center mx-auto w-100">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  {{ item.title }}
+                </h5>
+                <button
+                  type="button"
+                  class="close ml-5"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <img class="img-fluid" alt="" :src="item.imageUrl" />
+                  </div>
+                  <div class="w-50 m-auto">
+                    <p class="mb-0"> <h5>商品描述：</h5>{{ item.content }}</p>
+                    <hr>
+                    <p>
+                   <h5>商品詳細內容：</h5> {{ item.description }}
+                    </p>
+                  <hr>
+                  <div
+                    class="d-flex justify-content-between align-items-baseline"
+                  >
+                    <div class="h5" v-if="!item.price">
+                    定價：  {{ item.origin_price }}
+                    </div>
+                    <del class="h6" v-if="item.price">
+                      定價：  {{
+                      item.origin_price
+                    }}</del>
+                    <div class="h5 text-danger" v-if="item.price">
+                    特價：  {{ item.price }}
+                    </div>
+                  </div>
+                  </div>
+                  <select
+                    name=""
+                    class="form-control mt-3 w-25"
+                    style="margin-left:72%;"
+                    v-model="item.num"
+                  >
+                    <option :value="num" v-for="num in 10" :key="num">
+                      選購 {{ num }} {{ item.unit }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="text-muted text-nowrap mr-3">
+                  小計 <strong>{{ item.num * item.price }}</strong>
+                </div>
+                <button
+                  class="btn btn-primary"
+                  @click="addtoCart(item.id, item.num)"
+                >
+                  加入購物車
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+<!-- /ProductModal -->
     <Footer />
   </div>
 </template>
@@ -169,6 +255,7 @@ export default {
   data() {
     return {
       products: [],
+      product: [],
       searchText: "",
       categories: [],
       pagination: {},
@@ -204,12 +291,25 @@ export default {
         vm.getUnique();
       });
     },
+    getSingle(id) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`;
+      const vm = this;
+      vm.isLoading = true;
+      console.log("id:", id);
+      this.$http.get(api).then((response) => {
+        vm.product = response.data.product;
+        console.log("detail:", vm.product);
+        $("#seeProductModal").modal("show");
+        vm.isLoading = false;
+        vm.getUnique();
+      });
+    },
     getPages(page = 1) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`;
       const vm = this;
       vm.isLoading = true;
       vm.$http.get(url).then((response) => {
-        console.log('getPage:',response.data);
+        console.log("getPage:", response.data);
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
         vm.isLoading = false;
@@ -247,7 +347,7 @@ export default {
         vm.isLoading = false;
         vm.getCart();
         console.log("加入購物車:", response);
-        $("#seeNoteModal").modal("hide");
+        $("#seeProductModal").modal("hide");
       });
     },
     removeCart(id) {
@@ -262,17 +362,18 @@ export default {
       });
     },
     scrollwindow() {
-        window.scrollTo({
-            left:100,
-            top:600,
-            behavior: 'smooth'});
+      window.scrollTo({
+        left: 100,
+        top: 600,
+        behavior: "smooth",
+      });
     },
     gotop() {
-        window.scrollTo({
-            top:0,
-            behavior: 'smooth',
-        });
-    }
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    },
   },
   computed: {
     filterData() {
