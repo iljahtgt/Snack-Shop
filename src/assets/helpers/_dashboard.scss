@@ -1,0 +1,177 @@
+// dashboard
+.paddingset{
+    padding: 0;
+}
+// home.vue
+div.homeset{
+    background-color: rgb(252,241,230);
+    height: 100%;
+    width: 100%;
+    margin-bottom: 0;
+}
+div.item-list{
+    width:100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 0;
+}
+span.priceset{
+    color: red;
+    font-size: 30px;
+}
+// div.item-chain{
+    
+// }
+figure.figureset{
+    width: auto;
+    // cursor: pointer;
+    margin: 15px 5px 0 9.5px;
+    border:1px solid #efefef;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: 0;
+    transition: all .2s ease;
+}
+.item{
+    overflow: hidden;
+    width: 275px;
+    height: 440px;
+}
+.flex{
+    display: flex;
+    align-items: center;
+}
+img.item-img{
+    visibility: visible;
+    display: block;
+    // background: url("~@/assets/images/do.png");
+    background-size: auto 275px;
+    width: 275px;
+    height: 275px;
+    border: 3px solid orange;
+}
+div.cartset{
+    z-index: 2;
+    position: fixed;
+    float: right;
+    right: 10px;
+    top: 70px;
+    &:hover{
+        transform: scale(1.2);
+    }
+}
+i.icartset{
+    position: absolute;
+    right:5px;
+}
+span.numset{
+    position: absolute;
+    right: -10px;
+}
+div.gotop{
+    cursor: pointer;
+    z-index: 3;
+    position: fixed;
+    float: right;
+    right: 15px;
+    top: 120px;
+    &:hover{
+        transform: scale(1.2);
+    };
+}
+//sidebar.vue
+div.sidebarset{
+    text-align: center;
+    padding: 0px 0px;
+    height: auto;
+}
+li.category{
+    &:hover{
+        transform: scale(1.2);
+        color:orange;
+    }
+}
+a.list-group-item {
+    border: none;
+}
+//navbar.vue
+div.keywords-wrap{
+    color:#959595;
+    font-size: 13.5px;
+    letter-spacing: -.54px;
+    max-width: 585px;
+    // overflow: hidden;
+    height: 20px;
+    margin-left: 39%;
+}
+span.keywords a{
+    cursor: pointer;
+    margin: 0.3em;
+    display: inline-block;
+    vertical-align: bottom;
+    color: gray;
+    text-decoration: none;
+}
+.setright{
+    position: absolute;
+    right: 10px;
+}
+// footer
+footer.footer-bg{
+    background: gray;
+    a {
+        display: block;
+        color: white;
+        transition:all 0.5s;
+        border-radius: 7px;
+        width: 32px;
+        height: 32px;
+        overflow: hidden;
+        &:hover{
+            transform: rotate(360deg);
+        }
+    }
+}
+// customerorder
+div.mapset{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    font-size: x-small;
+
+}
+div.mapset a{
+    color: gray;
+    text-decoration: none;
+}
+// service
+div.content{
+    max-width: 100%;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+header{
+    display: table;
+    margin:0 auto;
+}
+header h1{
+    height: 100px;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    margin: 0 auto;
+}
+// about
+div.h1-middle{
+display: table;
+height: 90px;
+margin: 0 auto;
+}
+div.h1-middle h1{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 auto;
+}
