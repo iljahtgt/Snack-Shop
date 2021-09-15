@@ -43,7 +43,7 @@ npm run build --report
 使用下載下來的檔案，並使用npm install安裝完相關套件後，進入網站首頁頁面
 
 ![image](https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.03.15.png)
-
+***
 # 進入商店頁面後可以進行依類別尋找不同種類的零食，觀看詳細內容
 
 ![image](https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.03.41.png)
@@ -53,12 +53,12 @@ npm run build --report
 
 套用優惠券碼可以輸入：95套用95折優惠
 
-
+***
 # 登入資訊
 測試帳號：redder1990@hotmail.com
 測試密碼：naoki901214
 ![image](https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.12.13.png)
-
+***
 # 後台功能
 # 進入後台管理後可以進行商品及優惠券管理功能
 ![image](https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.08.46.png)
