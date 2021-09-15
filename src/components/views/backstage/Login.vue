@@ -4,7 +4,7 @@
       <div class="text-center mb-4">
         <img
           class="mb-4"
-          src=""
+          src="~@/assets/images/slogo.png"
           alt=""
           width="72"
           height="72"
