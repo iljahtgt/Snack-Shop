@@ -63,6 +63,6 @@ npm run build --report
 進入後台管理後可以進行商品及優惠券管理功能
 ![image](https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.08.46.png)
 商品管理功能
-!image[https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.09.00.png]
+![image](https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.09.00.png)
 
 
