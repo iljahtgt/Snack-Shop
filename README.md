@@ -44,10 +44,10 @@ npm run build --report
 
 ![image](https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.03.15.png)
 
-進入商店頁面後可以進行依類別尋找不同種類的零食，觀看詳細內容
+# 進入商店頁面後可以進行依類別尋找不同種類的零食，觀看詳細內容
 
 ![image](https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.03.41.png)
-購物車在旁邊隨著螢幕滑動,購物車內商品數量也隨著增減做即時改動
+# 購物車在旁邊隨著螢幕滑動,購物車內商品數量也隨著增減做即時改動
 ![image](https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.04.02.png)
 
 
@@ -60,9 +60,9 @@ npm run build --report
 ![image](https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.12.13.png)
 
 # 後台功能
-進入後台管理後可以進行商品及優惠券管理功能
+# 進入後台管理後可以進行商品及優惠券管理功能
 ![image](https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.08.46.png)
-商品管理功能
+# 商品管理功能
 ![image](https://github.com/iljahtgt/Snack-Shop/blob/main/forPicture/%E6%88%AA%E5%9C%96%202021-09-15%20%E4%B8%8B%E5%8D%886.09.00.png)
 
 
