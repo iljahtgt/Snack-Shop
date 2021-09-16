@@ -169,13 +169,13 @@
           role="dialog"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
-           v-for="(item) in filterData" :key="item.id"
+            v-model="product"
         >
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content border-0">
               <div class="modal-header bg-dark text-white text-center mx-auto w-100">
                 <h5 class="modal-title" id="exampleModalLabel">
-                  {{ item.title }}
+                  {{ product.title }}
                 </h5>
                 <button
                   type="button"
@@ -189,27 +189,27 @@
               <div class="modal-body">
                 <div class="row">
                   <div class="col-sm-4">
-                    <img class="img-fluid" alt="" :src="item.imageUrl" />
+                    <img class="img-fluid" alt="" :src="product.imageUrl" />
                   </div>
                   <div class="w-50 m-auto">
-                    <p class="mb-0"> <h5>商品描述：</h5>{{ item.content }}</p>
+                    <p class="mb-0"> <h5>商品描述：</h5>{{ product.content }}</p>
                     <hr>
                     <p>
-                   <h5>商品詳細內容：</h5> {{ item.description }}
+                   <h5>商品詳細內容：</h5> {{ product.description }}
                     </p>
                   <hr>
                   <div
                     class="d-flex justify-content-between align-items-baseline"
                   >
-                    <div class="h5" v-if="!item.price">
-                    定價：  {{ item.origin_price }}
+                    <div class="h5" v-if="!product.price">
+                    定價：  {{ product.origin_price }}
                     </div>
-                    <del class="h6" v-if="item.price">
+                    <del class="h6" v-if="product.price">
                       定價：  {{
-                      item.origin_price
+                      product.origin_price
                     }}</del>
-                    <div class="h5 text-danger" v-if="item.price">
-                    特價：  {{ item.price }}
+                    <div class="h5 text-danger" v-if="product.price">
+                    特價：  {{ product.price }}
                     </div>
                   </div>
                   </div>
@@ -217,21 +217,22 @@
                     name=""
                     class="form-control mt-3 w-25"
                     style="margin-left:72%;"
-                    v-model="item.num"
+                    v-model="product.num"
                   >
                     <option :value="num" v-for="num in 10" :key="num">
-                      選購 {{ num }} {{ item.unit }}
+                      選購 {{ num }} {{ product.unit }}
                     </option>
                   </select>
                 </div>
               </div>
               <div class="modal-footer">
                 <div class="text-muted text-nowrap mr-3">
-                  小計 <strong>{{ item.num * item.price }}</strong>
+                  小計 <strong v-if="product.num">{{ product.num * product.price }}</strong>
+                  <strong v-else>0</strong>
                 </div>
                 <button
                   class="btn btn-primary"
-                  @click="addtoCart(item.id, item.num)"
+                  @click="addtoCart(product.id, product.num)"
                 >
                   加入購物車
                 </button>
