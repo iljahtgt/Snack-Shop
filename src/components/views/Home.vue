@@ -20,7 +20,7 @@
       <div class="keywords-wrap">
         <span style="vertical-align: super">熱門關鍵字 :</span>
         <span class="keywords"
-          ><a href="#" @click.prevent="searchText = '冰淇淋';scrollwindow();">冰淇淋</a></span
+          ><a href="#" @click.prevent="searchText = '冰';scrollwindow();">冰淇淋</a></span
         >
         <span class="keywords"
           ><a href="#" @click.prevent="searchText = '洋芋片';scrollwindow();">洋芋片</a>

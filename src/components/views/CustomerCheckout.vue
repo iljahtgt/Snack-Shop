@@ -1,5 +1,6 @@
 <template>
-  <div class="text-center w-75 mx-auto">
+  <div>
+    <div class="text-center w-75 mx-auto">
     <h1 class="mt-5">結帳頁面</h1>
     <div class="col-12 mapset">
   <a href="/">首頁</a>
@@ -69,6 +70,7 @@
           </tbody>
         </table>
       </form>
+    </div>
     </div>
     <Footer />
   </div>
