@@ -227,8 +227,8 @@
               </div>
               <div class="modal-footer">
                 <div class="text-muted text-nowrap mr-3">
-                  小計 <strong v-if="product.num">{{ product.num * product.price }}</strong>
-                  <strong v-else>0</strong>
+                  小計 :<span v-if="product.num"><h3>{{ product.num * product.price }}</h3></span>
+                  <span v-else>0</span>
                 </div>
                 <button
                   class="btn btn-primary"
