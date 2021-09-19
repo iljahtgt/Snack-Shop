@@ -188,7 +188,7 @@
               </div>
               <div class="modal-body">
                 <div class="row">
-                  <div class="col-sm-4">
+                  <div class="col-md-4">
                     <img class="img-fluid" alt="" :src="product.imageUrl" />
                   </div>
                   <div class="w-50 m-auto">
@@ -227,7 +227,7 @@
               </div>
               <div class="modal-footer">
                 <div class="text-muted text-nowrap mr-3">
-                  小計 :<span v-if="product.num"><h3>{{ product.num * product.price }}</h3></span>
+                  小計 : <span v-if="product.num"><h3>{{ product.num * product.price }}</h3></span>
                   <span v-else>0</span>
                 </div>
                 <button
