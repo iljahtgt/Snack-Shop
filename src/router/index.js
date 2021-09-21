@@ -11,6 +11,7 @@ import Order from '../components/views/CustomerOrder.vue';
 import Service from '../components/views/Service.vue';
 import About from '../components/views/About.vue';
 import Checkout from '../components/views/CustomerCheckout.vue';
+import OrderList from '../components/views/backstage/OrderList.vue';
 Vue.use(Router)
 
 export default new Router({
@@ -74,6 +75,11 @@ export default new Router({
           name: 'coupon',
           component: Coupon,
           meta: { requiresAuth: true },
+        },
+        {
+          path: 'orderlist',
+          name: 'orderlist',
+          component: OrderList
         },
       ]
     },

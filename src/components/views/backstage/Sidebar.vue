@@ -29,11 +29,13 @@
           折扣碼管理
         </router-link>
       </li>
-      <!-- <li v-for="item in products" :key="item.id">
-        <div class="collapse" id="collapseExample">
-          <a href="#">{{ item.category }}</a>
-        </div>
-      </li> -->
+      <li>
+        <router-link class="nav-link" to="/admin/orderlist">
+          <i class="fas fa-box-open"></i>
+          訂單管理
+        </router-link>
+      </li>
+      
     </ul>
   </div>
 </template>

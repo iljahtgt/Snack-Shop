@@ -18,7 +18,7 @@ import * as rules from 'vee-validate/dist/rules';
 import App from './App';
 import router from './router';
 import currency from './filter/currency'; // filter
-import ceil from './filter/ceil';
+import timestampfilter from './filter/timestamp';
 import './bus'; // event bus
 
 // 驗證email & required給予客製化訊息 & 手機驗證
@@ -50,6 +50,7 @@ Vue.component('Loading', Loading);
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.filter('currency', currency);
+Vue.filter('timestamp', timestampfilter);
 
 // 替代用於伺服器端驗證的偽類
 configure({
