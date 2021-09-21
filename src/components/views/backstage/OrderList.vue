@@ -54,42 +54,47 @@
             <div class="modal-body">
               <div class="row">
                 <div class="col-sm-6">
-                    <div class="form-group">
-                    <label for="orderId">訂單ID</label>
-                    <div v-model="tempOrder.id">{{ tempOrder.id }}</div>
+                  <div class="form-group border-bottom">
+                    <h3 class="mb-3">消費者資訊</h3>
+                    <div class="text-left w-25 ml-5 mb-2">
+                      姓名：<span>{{ tempOrder.user.name }}</span>
+                    </div>
+                    <div class="text-left w-75 ml-5 mb-2">
+                      Email：<span>{{ tempOrder.user.email }}</span>
+                    </div>
+                    <div class="mb-3 text-left w-25 ml-5 mb-2">
+                      地址：<span>{{ tempOrder.user.address }}</span>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="create_at">訂單建立日期</label>
-                    <div>{{ tempOrder.create_at | timestamp }}</div>
+                  <div class="form-group h-25">
+                    <h3 class="w-100">留言內容</h3>
+                    <textarea class="w-100 h-100">{{ tempOrder.content }}</textarea>
                   </div>
-                  <div class="form-group">
-                    <label for="user">消費者資訊</label>
-                   <div>姓名：{{ tempOrder.user.name }}</div> 
-                   <div>Email：{{ tempOrder.user.email }}</div> 
-                   <div>地址：{{ tempOrder.user.address }}</div> 
-                  </div>
-
-                  
-                  
                 </div>
                 <div class="col-sm-6">
-                                      <div class="form-group">
-                    <label for="total">總價</label>
-                    <div>{{ tempOrder.total }}</div>
-                  </div>
-                     <div class="form-group">
-                    <label for="is_paid" class="d-block">付款狀態</label>
-                    <div v-if="tempOrder.is_paid">已付款</div>
-                    <div v-else>未付款</div>
-                  </div>
-                  
+                  <h3 class="mb-3">訂單資訊</h3>
+                  <div class="text-left w-75 ml-5">
                   <div class="form-group">
-                    <label for="paid_date">付款日期</label>
-                    <div>{{ tempOrder.paid_date | timestamp }}</div>
+                    <label for="orderId">訂單ID :</label>
+                    <span v-model="tempOrder.id">{{ tempOrder.id }}</span>
                   </div>
                   <div class="form-group">
-                    <label for="content">留言內容</label>
-                    <div>{{ tempOrder.content }}</div>
+                    <label for="create_at">訂單建立日期 :</label>
+                    <span>{{ tempOrder.create_at | timestamp }}</span>
+                  </div>
+                  <div class="form-group">
+                    <label>總價 :</label>
+                    <span>{{ tempOrder.total }} 元</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="is_paid">付款狀態 :</label>
+                    <span v-if="tempOrder.is_paid">已付款</span>
+                    <span v-else>未付款</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="paid_date">付款日期 :</label>
+                    <span>{{ tempOrder.paid_date | timestamp }}</span>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -97,7 +102,7 @@
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-primary"
+                class="btn btn-primary mx-auto"
                 data-dismiss="modal"
               >
                 確認
@@ -117,7 +122,7 @@
 </template>
 <script>
 import Pagination from "../../Pagination.vue";
-import $ from 'jquery';
+import $ from "jquery";
 
 export default {
   components: {
@@ -128,7 +133,7 @@ export default {
       orders: [],
       pagination: {},
       tempOrder: {
-          user:[],
+        user: [],
       },
     };
   },
@@ -155,8 +160,8 @@ export default {
     },
     OpenEditModal(item) {
       this.tempOrder = Object.assign({}, item);
-      console.log('openedit',this.tempOrder);
-      $("#orderModal").modal('show');
+      console.log("openedit", this.tempOrder);
+      $("#orderModal").modal("show");
     },
   },
   created() {
