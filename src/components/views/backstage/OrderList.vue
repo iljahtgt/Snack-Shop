@@ -10,7 +10,7 @@
             <th>付款日期</th>
             <th>購買者</th>
             <th>總價</th>
-            <th>操作</th>
+            <th>明細</th>
           </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
             <td v-else>NaN</td>
             <td>{{ item.user.name }}</td>
             <td>{{ item.total }}</td>
-            <td><a href="#" @click.prevent="OpenEditModal(item)">編輯</a></td>
+            <td><a href="#" @click.prevent="OpenEditModal(item)">查看</a></td>
           </tr>
         </tbody>
       </table>
@@ -40,7 +40,7 @@
           <div class="modal-content border-0">
             <div class="modal-header bg-dark text-white">
               <h5 class="modal-title" id="exampleModalLabel">
-                <span>修改訂單</span>
+                <span>訂單資訊</span>
               </h5>
               <button
                 type="button"
@@ -54,89 +54,42 @@
             <div class="modal-body">
               <div class="row">
                 <div class="col-sm-6">
-                  <div class="form-group">
-                    <label for="total">總價</label>
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="total"
-                      v-model="tempOrder.total"
-                      placeholder="請輸入標題"
-                    />
+                    <div class="form-group">
+                    <label for="orderId">訂單ID</label>
+                    <div v-model="tempOrder.id">{{ tempOrder.id }}</div>
                   </div>
                   <div class="form-group">
-                    <label for="content">留言內容</label>
-                    <textarea
-                      type="text"
-                      class="form-control"
-                      id="content"
-                      v-model="tempOrder.message"
-                      placeholder="請輸入留言內容"
-                    ></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="create_at">建立日期</label>
+                    <label for="create_at">訂單建立日期</label>
                     <div>{{ tempOrder.create_at | timestamp }}</div>
                   </div>
+                  <div class="form-group">
+                    <label for="user">消費者資訊</label>
+                   <div>姓名：{{ tempOrder.user.name }}</div> 
+                   <div>Email：{{ tempOrder.user.email }}</div> 
+                   <div>地址：{{ tempOrder.user.address }}</div> 
+                  </div>
+
+                  
+                  
                 </div>
                 <div class="col-sm-6">
+                                      <div class="form-group">
+                    <label for="total">總價</label>
+                    <div>{{ tempOrder.total }}</div>
+                  </div>
                      <div class="form-group">
                     <label for="is_paid" class="d-block">付款狀態</label>
-                    <input
-                      type="radio"
-                      class="form-control d-inline-block w-25"
-                      id="is_paid"
-                      name="paiditem"
-                      :value="true"
-                      v-model="tempOrder.is_paid"
-                    />
-                    <input                    
-                      type="radio"
-                      class="form-control d-inline w-25"
-                      id="not_paid"
-                      name="paiditem"
-                      :value="false"
-                      v-model="tempOrder.is_paid"
-                    />
-                    <div>
-                        <span class="m-4">已付款</span>
-                        <span class="m-4">未付款</span>
-                    </div>
-                    <span id="msg" class="text-danger"></span>
+                    <div v-if="tempOrder.is_paid">已付款</div>
+                    <div v-else>未付款</div>
                   </div>
-                   <div class="form-group">
-                    <label for="num">數量</label>
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="num"
-                      v-model="tempOrder.num"
-                      placeholder="請輸入數量"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="orderId">訂單ID</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="orderId"
-                      v-model="tempOrder.id"
-                      readonly
-                    />
-                  </div>
+                  
                   <div class="form-group">
                     <label for="paid_date">付款日期</label>
                     <div>{{ tempOrder.paid_date | timestamp }}</div>
                   </div>
                   <div class="form-group">
-                    <label for="user">消費者姓名</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="user"
-                      v-model="tempOrder.user.name"
-                      placeholder="請輸入消費者姓名"
-                    />
+                    <label for="content">留言內容</label>
+                    <div>{{ tempOrder.content }}</div>
                   </div>
                 </div>
               </div>
@@ -144,15 +97,8 @@
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-outline-secondary"
-                data-dismiss="modal"
-              >
-                取消
-              </button>
-              <button
-                type="button"
                 class="btn btn-primary"
-                @click="updateOrder"
+                data-dismiss="modal"
               >
                 確認
               </button>
@@ -211,20 +157,6 @@ export default {
       this.tempOrder = Object.assign({}, item);
       console.log('openedit',this.tempOrder);
       $("#orderModal").modal('show');
-    },
-    updateOrder() {
-        const vm = this;
-        const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/order/${vm.tempOrder.id}`;
-        vm.$http.put(url, { data: vm.tempOrder }).then((response) =>{
-            if(response.data.success){
-                vm.getOrders();
-                $('#orderModal').modal('hide');
-            }else{
-                vm.getOrders();
-                $('#orderModal').modal('hide');  
-                console.log('update failed');              
-            }
-        })
     },
   },
   created() {
