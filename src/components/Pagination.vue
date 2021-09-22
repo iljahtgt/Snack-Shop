@@ -23,7 +23,7 @@ export default {
     props: ["pagination"],
     data() {
         return {
-            page: 2,
+            page: 1,
         };
     },
     methods: {
