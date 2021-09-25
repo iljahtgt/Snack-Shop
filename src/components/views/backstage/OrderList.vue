@@ -1,5 +1,6 @@
 <template>
   <div class="col-md-10 mx-auto">
+      <loading :active.sync="isLoading"></loading>
     <ul class="nav nav-tabs">
       <li class="nav-item">
         <a
@@ -180,6 +181,7 @@ export default {
         user: [],
       },
       link: "is_paid",
+      isLoading: false,
     };
   },
   methods: {
