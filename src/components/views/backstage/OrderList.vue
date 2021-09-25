@@ -33,7 +33,7 @@
             <th>訂單建立日期</th>
             <th>訂單編號</th>
             <th>付款狀態</th>
-            <th>付款日期</th>
+            <th v-if="link == 'is_paid'">付款日期</th>
             <th>購買者</th>
             <th>總價</th>
             <th>明細</th>
@@ -62,8 +62,6 @@
             <td>{{ item.id }}</td>
             <td v-if="item.is_paid" class="text-success">已付款</td>
             <td v-else class="text-danger">未付款</td>
-            <td v-if="item.is_paid">{{ item.paid_date | timestamp }}</td>
-            <td v-else>NaN</td>
             <td>{{ item.user.name }}</td>
             <td>{{ item.total }}</td>
             <td><a href="#" @click.prevent="OpenEditModal(item)">查看</a></td>
