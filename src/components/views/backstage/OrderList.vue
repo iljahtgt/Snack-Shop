@@ -1,5 +1,30 @@
 <template>
   <div class="col-md-10 mx-auto">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a
+          href="#"
+          class="nav-link"
+          :class="{ active: link == 'is_paid' }"
+          @click.prevent="link = 'is_paid'"
+          >已付款</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          href="#"
+          class="nav-link"
+          :class="{ active: link == 'not_paid' }"
+          @click.prevent="link = 'not_paid'"
+          >未付款</a
+        >
+      </li>
+    </ul>
+    <!-- 分頁範例 -->
+    <!-- <div class="content mt-3">
+      <div v-if="link == 'is_paid'">true</div>
+      <div v-else-if="link == 'not_paid'">false</div>
+    </div> -->
     <div class="text-center mx-auto">
       <table class="table">
         <thead>
@@ -13,8 +38,25 @@
             <th>明細</th>
           </tr>
         </thead>
-        <tbody>
-          <tr v-for="item in orders" :key="item.id">
+        <tbody v-if="link == 'is_paid'">
+          <tr v-for="item in orders" :key="item.id" v-if="item.is_paid == true">
+            <td>{{ item.create_at | timestamp }}</td>
+            <td>{{ item.id }}</td>
+            <td v-if="item.is_paid" class="text-success">已付款</td>
+            <td v-else class="text-danger">未付款</td>
+            <td v-if="item.is_paid">{{ item.paid_date | timestamp }}</td>
+            <td v-else>NaN</td>
+            <td>{{ item.user.name }}</td>
+            <td>{{ item.total }}</td>
+            <td><a href="#" @click.prevent="OpenEditModal(item)">查看</a></td>
+          </tr>
+        </tbody>
+        <tbody v-else-if="link == 'not_paid'">
+          <tr
+            v-for="item in orders"
+            :key="item.id"
+            v-if="item.is_paid == false"
+          >
             <td>{{ item.create_at | timestamp }}</td>
             <td>{{ item.id }}</td>
             <td v-if="item.is_paid" class="text-success">已付款</td>
@@ -68,33 +110,35 @@
                   </div>
                   <div class="form-group h-25">
                     <h3 class="w-100">留言內容</h3>
-                    <textarea class="w-100 h-100">{{ tempOrder.content }}</textarea>
+                    <textarea class="w-100 h-100">{{
+                      tempOrder.content
+                    }}</textarea>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <h3 class="mb-3">訂單資訊</h3>
                   <div class="text-left w-75 ml-5">
-                  <div class="form-group">
-                    <label for="orderId">訂單ID :</label>
-                    <span v-model="tempOrder.id">{{ tempOrder.id }}</span>
-                  </div>
-                  <div class="form-group">
-                    <label for="create_at">訂單建立日期 :</label>
-                    <span>{{ tempOrder.create_at | timestamp }}</span>
-                  </div>
-                  <div class="form-group">
-                    <label>總價 :</label>
-                    <span>{{ tempOrder.total }} 元</span>
-                  </div>
-                  <div class="form-group">
-                    <label for="is_paid">付款狀態 :</label>
-                    <span v-if="tempOrder.is_paid">已付款</span>
-                    <span v-else>未付款</span>
-                  </div>
-                  <div class="form-group">
-                    <label for="paid_date">付款日期 :</label>
-                    <span>{{ tempOrder.paid_date | timestamp }}</span>
-                  </div>
+                    <div class="form-group">
+                      <label for="orderId">訂單ID :</label>
+                      <span v-model="tempOrder.id">{{ tempOrder.id }}</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="create_at">訂單建立日期 :</label>
+                      <span>{{ tempOrder.create_at | timestamp }}</span>
+                    </div>
+                    <div class="form-group">
+                      <label>總價 :</label>
+                      <span>{{ tempOrder.total }} 元</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="is_paid">付款狀態 :</label>
+                      <span v-if="tempOrder.is_paid">已付款</span>
+                      <span v-else>未付款</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="paid_date">付款日期 :</label>
+                      <span>{{ tempOrder.paid_date | timestamp }}</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -112,11 +156,11 @@
         </div>
       </div>
       <!-- edit Modal -->
-      <Pagination
+      <!-- <Pagination
         class="mx-auto"
         :pagination="pagination"
         @pageTrigger="getPages"
-      />
+      /> -->
     </div>
   </div>
 </template>
@@ -135,6 +179,7 @@ export default {
       tempOrder: {
         user: [],
       },
+      link: "is_paid",
     };
   },
   methods: {

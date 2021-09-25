@@ -158,7 +158,7 @@
       </div>
       <div class="m-5 text-center mx-auto">
         <!-- 綁定pagination名稱給子模板，傳送pagination資訊過去 -->
-        <Pagination :pagination="pagination" @pageTrigger="getPages" />
+        <Pagination :Nowpagination="pagination" @pageTrigger="getPages" />
       </div>
     </div>
      <!-- ProductModal -->

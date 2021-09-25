@@ -79,7 +79,7 @@ export default new Router({
         {
           path: 'orderlist',
           name: 'orderlist',
-          component: OrderList
+          component: OrderList,
         },
       ]
     },
