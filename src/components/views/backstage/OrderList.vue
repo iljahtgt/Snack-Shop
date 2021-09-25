@@ -97,13 +97,13 @@
                 <div class="col-sm-6">
                   <div class="form-group border-bottom">
                     <h3 class="mb-3">消費者資訊</h3>
-                    <div class="text-left w-25 ml-5 mb-2">
+                    <div class="text-left w-50 ml-5 mb-2">
                       姓名：<span>{{ tempOrder.user.name }}</span>
                     </div>
                     <div class="text-left w-75 ml-5 mb-2">
                       Email：<span>{{ tempOrder.user.email }}</span>
                     </div>
-                    <div class="mb-3 text-left w-25 ml-5 mb-2">
+                    <div class="mb-3 text-left w-75 ml-5">
                       地址：<span>{{ tempOrder.user.address }}</span>
                     </div>
                   </div>
@@ -134,7 +134,7 @@
                       <span v-if="tempOrder.is_paid">已付款</span>
                       <span v-else>未付款</span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" v-if="tempOrder.is_paid">
                       <label for="paid_date">付款日期 :</label>
                       <span>{{ tempOrder.paid_date | timestamp }}</span>
                     </div>
