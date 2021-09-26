@@ -123,20 +123,22 @@
             </div>
             <figcaption>
               <div class="item-header-b text-center">
-                <h3>{{ item.title }}</h3>
+                <h3 class="mt-1">{{ item.title }}</h3>
               </div>
+              <hr class="m-0">
               <div class="item-detail flex justify-content-around">
-                <del>原價:{{ item.origin_price | currency }}</del>
+                <del class="mt-3">原價:{{ item.origin_price | currency }}</del>
 
                 <span class="item-display">
                   特價:
                   <span class="priceset">{{ item.price | currency }}</span>
                 </span>
               </div>
-              <div class="item-footer mx-auto text-center">
+              <!-- <div class="item-footer mx-auto text-center">
                 {{ item.content }}
-              </div>
-              <span class="flex row justify-content-around w-100 mx-auto mt-2">
+              </div> -->
+              <hr class="mt-2">
+              <span class="flex row justify-content-around w-100 mx-auto mt-3">
                 <button class="btn btn-outline-primary w-25"
                 @click.prevent="getSingle(item.id)">
                   <i
