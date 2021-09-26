@@ -25,26 +25,26 @@
             <img v-if="item.imageUrl" :src="item.imageUrl" width="50" height="50" alt="">
             <img v-else src="" width="50" height="50" alt="">
             </td>
-          <td>{{ item.title }}</td>
-          <td class="text-right">
+          <td class="w-25">{{ item.title }}</td>
+          <td>
             {{ item.origin_price | currency }}
           </td>
-          <td class="text-right">
+          <td>
             {{ item.price | currency }}
           </td>
           <td>
             <span v-if="item.is_enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>
           </td>
-          <td>
+          <td style="width:120px;">
             <button
-              class="btn btn-outline-primary btn-sm"
+              class="btn btn-outline-primary btn-sm mr-1"
               @click="openModal(false, item)"
             >
               編輯
             </button>
             <button
-              class="btn btn-outline-primary btn-sm"
+              class="btn btn-outline-primary btn-sm ml-1"
               @click="openDelModal(item)"
             >
               刪除

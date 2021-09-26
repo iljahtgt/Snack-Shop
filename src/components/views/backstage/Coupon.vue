@@ -41,7 +41,7 @@
       </thead>
       <tbody v-if="link == 'is_active'">
         <tr v-for="item in coupons" :key="item.id" v-if="item.is_enabled">
-          <td>
+          <td class="w-25">
             {{ item.title }}
           </td>
           <td>
@@ -56,15 +56,15 @@
           <td>
             {{ item.code }}
           </td>
-          <td>
+          <td style="width:100px;">
             <button
-              class="btn btn-outline-primary btn-sm"
+              class="btn btn-outline-primary btn-sm mr-1"
               @click="openModal(false, item)"
             >
               編輯
             </button>
             <button
-              class="btn btn-outline-primary btn-sm"
+              class="btn btn-outline-primary btn-sm ml-1"
               @click="openDelModal(item)"
             >
               刪除
@@ -74,7 +74,7 @@
       </tbody>
       <tbody v-if="link == 'not_active'">
         <tr v-for="item in coupons" :key="item.id" v-if="!item.is_enabled">
-          <td>
+          <td class="w-25">
             {{ item.title }}
           </td>
           <td>
@@ -89,15 +89,15 @@
           <td>
             {{ item.code }}
           </td>
-          <td>
+          <td style="width:90px;">
             <button
-              class="btn btn-outline-primary btn-sm"
+              class="btn btn-outline-primary btn-sm mr-1"
               @click="openModal(false, item)"
             >
               編輯
             </button>
             <button
-              class="btn btn-outline-primary btn-sm"
+              class="btn btn-outline-primary btn-sm ml-1"
               @click="openDelModal(item)"
             >
               刪除

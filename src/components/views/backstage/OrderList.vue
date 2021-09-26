@@ -104,7 +104,7 @@
                       Email：<span>{{ tempOrder.user.email }}</span>
                     </div>
                     <div class="mb-3 text-left w-75 ml-5">
-                      地址：<span>{{ tempOrder.user.address }}</span>
+                      宅配地址：<span>{{ tempOrder.user.address }}</span>
                     </div>
                   </div>
                   <div class="form-group h-25">
