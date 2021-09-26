@@ -1,10 +1,32 @@
 <template>
   <div class="text-center mx-auto w-75">
     <loading :active.sync="isLoading"></loading>
-    <div style="text-align: right" class="mt-4">
-      <button class="btn btn-primary" @click="openModal(true)">
-        建立優惠券
-      </button>
+    <div class="mt-4">
+      <ul class="nav nav-tabs">
+        <li class="nav-item col-md-2 p-0">
+          <a
+            href="#"
+            class="nav-link"
+            :class="{ active: link == 'is_active' }"
+            @click.prevent="link = 'is_active'"
+            >已啟用</a
+          >
+        </li>
+        <li class="nav-item col-md-2 p-0">
+          <a
+            href="#"
+            class="nav-link"
+            :class="{ active: link == 'not_active' }"
+            @click.prevent="link = 'not_active'"
+            >未啟用</a
+          >
+        </li>
+        <li class="text-right align-middle col-md-8 pull-right">
+          <button class="btn btn-primary" @click="openModal(true)">
+            建立優惠券
+          </button>
+        </li>
+      </ul>
     </div>
     <table class="table mt-4">
       <thead>
@@ -17,10 +39,10 @@
           <th width="80">編輯</th>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="item in coupons" :key="item.id">
+      <tbody v-if="link == 'is_active'">
+        <tr v-for="item in coupons" :key="item.id" v-if="item.is_enabled">
           <td>
-              {{ item.title }}
+            {{ item.title }}
           </td>
           <td>
             {{ item.percent }}
@@ -30,10 +52,42 @@
           </td>
           <td>
             <span v-if="item.is_enabled" class="text-success">啟用</span>
-            <span v-else>未啟用</span>
           </td>
           <td>
-              {{ item.code }}
+            {{ item.code }}
+          </td>
+          <td>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              @click="openModal(false, item)"
+            >
+              編輯
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              @click="openDelModal(item)"
+            >
+              刪除
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tbody v-if="link == 'not_active'">
+        <tr v-for="item in coupons" :key="item.id" v-if="!item.is_enabled">
+          <td>
+            {{ item.title }}
+          </td>
+          <td>
+            {{ item.percent }}
+          </td>
+          <td>
+            {{ item.due_date }}
+          </td>
+          <td>
+            <span v-if="!item.is_enabled" class="text-danger">未啟用</span>
+          </td>
+          <td>
+            {{ item.code }}
           </td>
           <td>
             <button
@@ -54,21 +108,36 @@
     </table>
     <!-- pagination -->
     <!-- <router-view name="Pagination"></router-view> -->
-    <nav aria-label="Page navigation example" style="margin-left:50%;">
+    <nav aria-label="Page navigation example" style="margin-left: 50%">
       <ul class="pagination">
-        <li class="page-item" :class="{'disabled': !pagination.has_pre}">
-          <a class="page-link" href="#" aria-label="Previous" 
-          @click.prevent="getCoupons(pagination.current_page - 1)">
+        <li class="page-item" :class="{ disabled: !pagination.has_pre }">
+          <a
+            class="page-link"
+            href="#"
+            aria-label="Previous"
+            @click.prevent="getCoupons(pagination.current_page - 1)"
+          >
             <span aria-hidden="true">&laquo;</span>
             <span class="sr-only">Previous</span>
           </a>
         </li>
-        <li class="page-item" v-for="page in pagination.total_pages" :key="page" 
-        :class="{'active': pagination.current_page === page}">
-            <a class="page-link" href="#" @click.prevent="getCoupons(page)">{{ page }}</a></li>
-        <li class="page-item" :class="{'disabled': !pagination.has_next}">
-          <a class="page-link" href="#" aria-label="Next"
-          @click.prevent="getCoupons(pagination.current_page + 1)">
+        <li
+          class="page-item"
+          v-for="page in pagination.total_pages"
+          :key="page"
+          :class="{ active: pagination.current_page === page }"
+        >
+          <a class="page-link" href="#" @click.prevent="getCoupons(page)">{{
+            page
+          }}</a>
+        </li>
+        <li class="page-item" :class="{ disabled: !pagination.has_next }">
+          <a
+            class="page-link"
+            href="#"
+            aria-label="Next"
+            @click.prevent="getCoupons(pagination.current_page + 1)"
+          >
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">Next</span>
           </a>
@@ -175,11 +244,7 @@
             >
               取消
             </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              @click="updateCoupon"
-            >
+            <button type="button" class="btn btn-primary" @click="updateCoupon">
               確認
             </button>
           </div>
@@ -245,6 +310,7 @@ export default {
       pagination: {},
       isLoading: false,
       isNew: false,
+      link: "is_active",
     };
   },
   methods: {
@@ -253,7 +319,7 @@ export default {
       const vm = this;
       vm.isLoading = true;
       this.$http.get(api).then((response) => {
-          console.log(response.data.coupons);
+        console.log(response.data.coupons);
         vm.isLoading = false;
         vm.coupons = response.data.coupons;
         vm.pagination = response.data.pagination;

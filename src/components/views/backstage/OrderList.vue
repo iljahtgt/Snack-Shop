@@ -6,7 +6,7 @@
         <a
           href="#"
           class="nav-link"
-          :class="{ active: link == 'is_paid' }"
+          :class="{ 'active': link == 'is_paid' }"
           @click.prevent="link = 'is_paid'"
           >已付款</a
         >
@@ -15,7 +15,7 @@
         <a
           href="#"
           class="nav-link"
-          :class="{ active: link == 'not_paid' }"
+          :class="{ 'active': link == 'not_paid' }"
           @click.prevent="link = 'not_paid'"
           >未付款</a
         >
