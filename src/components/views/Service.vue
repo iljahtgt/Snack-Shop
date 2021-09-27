@@ -11,8 +11,8 @@
 </div>
     <div class="bg-white">
       <div class="content">
-        <section class="section">
-          <div class="shadow m-3 mx-auto mt-4">
+        <section class="section pt-3">
+          <div class="shadow m-3 mx-auto">
             <div class="row w-100 m-0">
               <i class="fa fa-question-circle fa-3x p-3 col-sm-1"></i>
               <div class="col-sm-6">
