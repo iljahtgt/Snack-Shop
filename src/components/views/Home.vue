@@ -107,32 +107,34 @@
           </router-link>
         </div>
       </div>
-      <div class="gotop" @click.prevent="gotop()">
-          <i class="fa fa-arrow-up fa-2x text-dark"></i>
+      <!-- 最上層 -->
+      <div class="gotop mx-auto" @click.prevent="gotop()">
+          <i class="fa fa-arrow-up fa-2x text-dark ml-2"></i>
+         <div style="font-family:'標楷體'">最上層</div> 
       </div>
       <!-- product -->
       <div class="col-md-10 row h-100" style="z-index: 1">
         <div
-          class="col-md-4 item-chain"
+          class="col-md-4"
           v-for="item in filterData"
           :key="item.id"
         >
-          <figure class="item mx-auto bg-light shadow mt-2 figureset">
+          <figure class="item mx-auto w-100 bg-light shadow mt-5 figureset">
             <div class="item-figure">
               <img class="item-img" :src="item.imageUrl" alt="" />
             </div>
             <figcaption>
               <div class="item-header-b text-center">
-                <h3 class="mt-1">{{ item.title }}</h3>
+                <h3 class="mt-2">{{ item.title }}</h3>
               </div>
-              <hr class="m-0">
-              <div class="item-detail flex justify-content-around">
+              <hr class="m-0 text-danger mb-2">
+              <div class="item-detail ml-3">
                 <del class="mt-3">原價:{{ item.origin_price | currency }}</del>
 
-                <span class="item-display">
-                  特價:
-                  <span class="priceset">{{ item.price | currency }}</span>
-                </span>
+                <div class="item-display text-danger">
+                  超值特價 :
+                  <span class="priceset">{{ item.price | currency }}/{{ item.unit }}</span>
+                </div>
               </div>
               <!-- <div class="item-footer mx-auto text-center">
                 {{ item.content }}
@@ -171,10 +173,10 @@
         >
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content border-0">
-              <div class="modal-header bg-dark text-white text-center mx-auto w-100">
-                <h5 class="modal-title" id="exampleModalLabel">
+              <div class="modal-header bg-orange text-white text-center mx-auto w-100">
+                <h3 class="modal-title mx-auto" id="exampleModalLabel">
                   {{ product.title }}
-                </h5>
+                </h3>
                 <button
                   type="button"
                   class="close ml-5"
