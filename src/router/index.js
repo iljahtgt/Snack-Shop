@@ -12,6 +12,8 @@ import Service from '../components/views/Service.vue';
 import About from '../components/views/About.vue';
 import Checkout from '../components/views/CustomerCheckout.vue';
 import OrderList from '../components/views/backstage/OrderList.vue';
+import Product from '../components/views/SingleProduct.vue';
+
 Vue.use(Router)
 
 export default new Router({
@@ -22,7 +24,6 @@ export default new Router({
     },
     {
       path: '/',
-      redirect: '/index',
       component: Dashboard,
       children: [
         {
@@ -41,6 +42,11 @@ export default new Router({
           component: About,
         },
       ],
+    },
+    {
+      path: '/singleproduct/pid=:id',
+      name: 'product',
+      component: Product,
     },
     {
       path: '/order',

@@ -251,22 +251,6 @@ export default {
         vm.status.loadingItem = "";
       });
     },
-    addtoCart(id, qty = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
-      const vm = this;
-      console.log(process.env.VUE_APP_APIPATH, process.env.VUE_APP_CUSTOMPATH);
-      vm.status.loadingItem = id;
-      const cart = {
-        product_id: id,
-        qty,
-      };
-      this.$http.post(api, { data: cart }).then((response) => {
-        console.log(response.data);
-        vm.status.loadingItem = "";
-        vm.getCart();
-        $("#seemoreModal").modal("hide");
-      });
-    },
     getCart() {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
       const vm = this;
